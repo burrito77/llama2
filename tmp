@@ -1,0 +1,1 @@
+docker run -p 8888:8888 -e HUGGINGFACEHUB_API_TOKEN=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 aishwaryaprabhat/llama-in-a-container:v1
