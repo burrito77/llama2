@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Model Checkpoints
+*.pth
+
 # Distribution / packaging
 .Python
 build/
