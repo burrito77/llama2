@@ -8,6 +8,8 @@ __pycache__/
 
 # Model Checkpoints
 *.pth
+*.bin
+*.safetensors
 
 # Distribution / packaging
 .Python
