@@ -11,6 +11,9 @@ __pycache__/
 *.bin
 *.safetensors
 
+# Unimportant Folders
+./tmpfolders
+
 # Distribution / packaging
 .Python
 build/
