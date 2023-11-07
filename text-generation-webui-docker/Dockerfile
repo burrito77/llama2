@@ -122,5 +122,5 @@ CMD ["python3", "/app/server.py", "--cpu"]
 FROM base AS default
 RUN echo "DEFAULT" >> /variant.txt
 ENV EXTRA_LAUNCH_ARGS="CUDA_LAUNCH_BLOCKING=1"
-COPY ./config/models /app
+#COPY ./config/models /app
 CMD ["python3", "/app/server.py"]
