@@ -71,6 +71,7 @@ ENV VERSION_TAG=$VERSION_TAG
 RUN echo "$VERSION_TAG" > /version_tag.txt
 # Copy and enable all scripts
 COPY ./scripts /scripts
+COPY ./config/models /app/models
 RUN chmod +x /scripts/*
 # Run
 ENTRYPOINT ["/scripts/docker-entrypoint.sh"]
