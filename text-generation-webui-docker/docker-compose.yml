@@ -8,6 +8,9 @@ services:
 #      - BUILD_EXTENSIONS_LIVE="silero_tts whisper_stt" # Install named extensions during every container launch. THIS WILL SIGNIFICANLTLY SLOW LAUNCH TIME.
     ports:
       - 7860:7860  # Default web port
+      - 7861:7861
+      - 7862:7862
+      - 7862:7862
 #      - 5000:5000  # Default API port
 #      - 5005:5005  # Default streaming port
 #      - 5001:5001  # Default OpenAI API extension port
