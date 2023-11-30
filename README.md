@@ -12,11 +12,11 @@ Short description of your project.
 
 ## Project Overview
 
-This is a dockerized version of https://github.com/oobabooga/text-generation-webui, which is a webui for LLM's. You can build the docker container yourself or use the provided pre-built containers.
+This is a dockerized implementation of https://github.com/oobabooga/text-generation-webui, which is a webui for LLM's. You can build the docker image yourself or use provided pre-built image.
 
 ## Prerequisites
 
-The docker container can be ran on a laptop with 16GB RAM, where a gpu is optional. Actual minimal requirements are unknown, but users will also need at least 10GB storage to use the smallest pre-built container.
+Both pre-built docker images can be ran on a laptop with 16GB RAM. A GPU is required for running the GPU pre-built image, but is not required to run the other one. Actual minimal requirements are unknown, but users will also need at least 10GB storage to use the cpu-only pre-built image, and 20GB to use the GPU-supported image.
 
 ## File Structure
 The expected file structure for minimal usage of the webui is
@@ -40,32 +40,34 @@ The expected file structure for minimal usage of the webui is
     └── extensions_runtime_rebuild.sh
 ```
 ## Installation
-This code will only build a container that only uses the CPU
-To build yourself, run 
+This code will only build a image that only uses the CPU. Building an image can take  over 40 minutes.
+To build it yourself, run 
 ```
 docker build --target llama-cpu -t image/name:tag . 
 ```
-To run the built container, run 
+To run the built image, run 
 ```
 docker run -it -e EXTRA_LAUNCH_ARGS="--listen --verbose" -p 7860:7860 stargazingv3/llama2:size
 ```
 
-To use a pre-built container with GPU support, run 
+To use a pre-built image with GPU support, run 
 ```
 docker pull stargazingv3/llama2:single
 docker run -it -e EXTRA_LAUNCH_ARGS="--share" -p 7860:7860 --gpus all stargazingv3/llama2:single
 ```
 
-To use a pre-built container with CPU-only support, run
+To use a pre-built image with CPU-only support, run
 ```
-docker pull stargazingv3/llama2:cpu
-docker run -it -e EXTRA_LAUNCH_ARGS="--share" -p 7860:7860 stargazingv3/llama2:cpu
+docker pull stargazingv3/llama2:cpu2
+docker run -it -e EXTRA_LAUNCH_ARGS="--share" -p 7860:7860 stargazingv3/llama2:cpu2
 ```
 
+Optionally, the user can add -rm to the docker command to automatically delete the container once done with running an image instance.
+
 ## Usage
-- The pre-built cpu-only container comes with a Llama-2 model with 7 billion parameters, while the pre-built GPU support container comes with both a 7 billion and a 13 billion parameter model.
+- Both the cpu-only and the GPU support come pre-built with a 7 billion parameter llama2 model for use.
 - After running the docker run command, the user can interact with the webui by either visiting local host at the specified port if running on a local machine or, by using the --share argument, the .gradio link if running on a remote machine, which can be additionally be shared with others to use.
-- Upon visiting the webui, users can go to the model tab and select a model to load from the dropdown, along with a transformer to use for the model and then press load. If using a GGML model, it is recommended to use the _ transformer, and the _ transformer if using a GPTQ model.
-    - Users can also download other models by putting their link on the right side of the model tab, and can visit the _ tab to modify the parameters to use when loading in a model, such as _ if desired.
-- After loading a model, the user can go to the _ tab and select the type of inference they would like to do, where _ is for a normal chatbot, _ is for and _ is for code questions, and then begin chatting.
+- Upon visiting the webui, users can go to the model tab and select a model to load from the dropdown, along with a transformer to use for the model and then press load. If using a GGML model, it is recommended to use the ctransformers transformer, and the ExLlamav2_HF transformer if using a GPTQ model. Not all transformers are compatible with all types of models. 
+    - Users can also download other models by putting their link on the right side of the model tab, and can visit the Parameters tab to modify the parameters to use when loading in a model, such as max_new_tokens, which dictates how many tokens the model will generate up to each response, if desired.
+- After loading a model, the user can go to the chat tab and select the type of inference they would like to do, where "chat" is for a normal chatbot, "instruct" is for code generation, "chat-instruct" is for a mix of both, and then begin chatting.
     - This is the main intended and tested feature. However, there are also many others the user can do, such as training the model.

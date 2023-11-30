@@ -18,6 +18,7 @@ tensorboard
 transformers
 tqdm
 wandb
+ctransformers
 
 git+https://github.com/oobabooga/torch-grammar.git
 
