@@ -40,7 +40,7 @@ The expected file structure for minimal usage of the webui is
     └── extensions_runtime_rebuild.sh
 ```
 ## Installation
-This code will only build a image that only uses the CPU. Building an image can take  over 40 minutes.
+This code will only build a image that only uses the CPU. Building an image can take  over 50 minutes.
 To build it yourself, run 
 ```
 docker build --target llama-cpu -t image/name:tag . 
@@ -68,6 +68,7 @@ Optionally, the user can add -rm to the docker command to automatically delete t
 - Both the cpu-only and the GPU support come pre-built with a 7 billion parameter llama2 model for use.
 - After running the docker run command, the user can interact with the webui by either visiting local host at the specified port if running on a local machine or, by using the --share argument, the .gradio link if running on a remote machine, which can be additionally be shared with others to use.
 - Upon visiting the webui, users can go to the model tab and select a model to load from the dropdown, along with a transformer to use for the model and then press load. If using a GGML model, it is recommended to use the ctransformers transformer, and the ExLlamav2_HF transformer if using a GPTQ model. Not all transformers are compatible with all types of models. 
-    - Users can also download other models by putting their link on the right side of the model tab, and can visit the Parameters tab to modify the parameters to use when loading in a model, such as max_new_tokens, which dictates how many tokens the model will generate up to each response, if desired.
+    - The times required to load the models, along with the token generation speed, heavily varies based on background usage.
+    - Users can also download other models using the "Download model or LoRA" portion of the model tab, and can visit the Parameters tab to modify the parameters to use when loading in a model, such as max_new_tokens, which dictates how many tokens the model will generate up to each response, if desired.
 - After loading a model, the user can go to the chat tab and select the type of inference they would like to do, where "chat" is for a normal chatbot, "instruct" is for code generation, "chat-instruct" is for a mix of both, and then begin chatting.
     - This is the main intended and tested feature. However, there are also many others the user can do, such as training the model.
