@@ -1,23 +1,23 @@
 #!/bin/bash
 
 # Function to handle keyboard interrupt
-function ctrl_c {
-    echo -e "\nKilling container!"
+#function ctrl_c {
+#    echo -e "\nKilling container!"
     # Add your cleanup actions here
-    exit 0
-}
+#    exit 0
+#}
 # Register the keyboard interrupt handler
-trap ctrl_c SIGTERM SIGINT SIGQUIT SIGHUP
+#trap ctrl_c SIGTERM SIGINT SIGQUIT SIGHUP
 
 # Generate default configs if empty
-CONFIG_DIRECTORIES=("characters" "loras" "models" "presets" "prompts" "training/datasets" "training/formats")
-for config_dir in "${CONFIG_DIRECTORIES[@]}"; do
-  if [ -z "$(ls /app/"$config_dir")" ]; then
-    echo "*** Initialising config for: '$config_dir' ***"
-    cp -ar /src/"$config_dir"/* /app/"$config_dir"/
-    chown -R 1000:1000 /app/"$config_dir"  # Not ideal... but convenient.
-  fi
-done
+#CONFIG_DIRECTORIES=("characters" "loras" "models" "presets" "prompts" "training/datasets" "training/formats")
+#for config_dir in "${CONFIG_DIRECTORIES[@]}"; do
+#  if [ -z "$(ls /app/"$config_dir")" ]; then
+#    echo "*** Initialising config for: '$config_dir' ***"
+#    cp -ar /src/"$config_dir"/* /app/"$config_dir"/
+#    chown -R 1000:1000 /app/"$config_dir"  # Not ideal... but convenient.
+#  fi
+#done
 
 # Populate extension folders if empty
 EXTENSIONS_SRC="/src/extensions"
