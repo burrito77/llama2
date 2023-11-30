@@ -12,13 +12,15 @@ RUN virtualenv /venv
 ENV VIRTUAL_ENV=/venv
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+#RUN pip3 install --upgrade pip setuptools && \
+#    pip3 install torch torchvision torchaudio
 RUN pip3 install --upgrade pip setuptools && \
-    pip3 install torch torchvision torchaudio
+    pip3 install torch torchvision
 
 #FROM env_base AS app_base
 # Copy and enable all scripts
-COPY ./scripts /scripts
-RUN chmod +x /scripts/*
+#COPY ./scripts /scripts
+#RUN chmod +x /scripts/*
 ### DEVELOPERS/ADVANCED USERS ###
 # Clone oobabooga/text-generation-webui
 #RUN git clone https://github.com/oobabooga/text-generation-webui /src
@@ -37,8 +39,8 @@ RUN cp -ar /src /app
 #RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r /app/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r /app/requirements_cpu_only.txt
 # Install extensions
-RUN --mount=type=cache,target=/root/.cache/pip \
-    chmod +x /scripts/build_extensions.sh && . /scripts/build_extensions.sh
+RUN --mount=type=cache,target=/root/.cache/pip
+    #chmod +x /scripts/build_extensions.sh && . /scripts/build_extensions.sh
 # Clone default GPTQ
 #RUN git clone https://github.com/oobabooga/GPTQ-for-LLaMa.git -b cuda /app/repositories/GPTQ-for-LLaMa
 # Build and install default GPTQ ('quant_cuda')
