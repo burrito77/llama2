@@ -39,8 +39,8 @@ RUN cp -ar /src /app
 #RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r /app/requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install -r /app/requirements_cpu_only.txt
 # Install extensions
-RUN --mount=type=cache,target=/root/.cache/pip
-    #chmod +x /scripts/build_extensions.sh && . /scripts/build_extensions.sh
+RUN --mount=type=cache,target=/root/.cache/pip \
+    chmod +x /scripts/build_extensions.sh && . /scripts/build_extensions.sh
 # Clone default GPTQ
 #RUN git clone https://github.com/oobabooga/GPTQ-for-LLaMa.git -b cuda /app/repositories/GPTQ-for-LLaMa
 # Build and install default GPTQ ('quant_cuda')
