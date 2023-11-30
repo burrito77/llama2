@@ -19,8 +19,8 @@ RUN pip3 install --upgrade pip setuptools && \
 
 #FROM env_base AS app_base
 # Copy and enable all scripts
-#COPY ./scripts /scripts
-#RUN chmod +x /scripts/*
+COPY ./scripts /scripts
+RUN chmod +x /scripts/*
 ### DEVELOPERS/ADVANCED USERS ###
 # Clone oobabooga/text-generation-webui
 #RUN git clone https://github.com/oobabooga/text-generation-webui /src
