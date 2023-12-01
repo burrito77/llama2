@@ -29,6 +29,6 @@ fi
 
 # Run the Docker container with a bind mount
 echo -e "${green}Now running within Docker container. Restart this shell script to build again / update after any changes to requirements.txt. Type 'exit' to exit. ${nc}"
-echo -e "${green}Lost? run 'python3 train.py --config_file_path configs/<your_config.json> ${nc}'"
+#echo -e "${green}Lost? run 'python3 train.py --config_file_path configs/<your_config.json> ${nc}'"
 
 docker run --gpus all -u $(id -u):$(id -g) -v "$PWD:/app" -it "$image_name"

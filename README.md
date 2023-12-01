@@ -10,9 +10,12 @@
 
 This is a dockerized implementation of https://github.com/oobabooga/text-generation-webui, which is a webui for LLM's. You can build the docker image yourself or use provided pre-built image.
 
+The Project Video is part of this repo as ProjectDemo.mp4, and can also be accessed at: https://www.youtube.com/watch?v=_K5USUs0GaI
+
+The Project Report is attached in this repo as Report.pdf
 ## Prerequisites
 
-Both pre-built docker images can be ran on a laptop with 16GB RAM. A GPU is required for running the GPU pre-built image, but is not required to run the other one. Actual minimal requirements are unknown, but users will also need at least 10GB storage to use the cpu-only pre-built image, and 20GB to use the GPU-supported image.
+Both pre-built docker images can be ran on a laptop with 16GB RAM. A GPU is required for running the GPU pre-built image, but is not required to run the other one. Actual minimal requirements are unknown, but users will also need at least 10GB storage to use the cpu-only pre-built image, and 26GB to use the GPU-supported image.
 
 If you would like to build it yourself, the model does not come with this repo as it is too large, but can be downloaded from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML, or you can download your own.
 
@@ -45,7 +48,7 @@ docker build --target llama-cpu -t image/name:tag .
 ```
 To run the built image, run 
 ```
-docker run -it -e EXTRA_LAUNCH_ARGS="--listen --verbose" -p 7860:7860 stargazingv3/llama2:size
+docker run -it -e EXTRA_LAUNCH_ARGS="--listen --verbose" -p 7860:7860 image/name:tag
 ```
 
 To use a pre-built image with GPU support (26GB), run 
@@ -70,3 +73,5 @@ Optionally, the user can add -rm to the docker command to automatically delete t
     - Users can also download other models using the "Download model or LoRA" portion of the model tab, and can visit the Parameters tab to modify the parameters to use when loading in a model, such as max_new_tokens, which dictates how many tokens the model will generate up to each response, if desired.
 - After loading a model, the user can go to the chat tab and select the type of inference they would like to do, where "chat" is for a normal chatbot, "instruct" is for code generation, "chat-instruct" is for a mix of both, and then begin chatting.
     - This is the main intended and tested feature. However, there are also many others the user can do, such as training the model.
+
+- This github, the docker containers, and the accompanying video are guaranteed to be available up till December 12th.
