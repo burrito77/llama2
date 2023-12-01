@@ -6,7 +6,7 @@ red='\033[0;31m'
 nc='\033[0m'  # No color
 
 # Define the Docker image name
-image_name="container2/test:2.0" #user/image:tag
+image_name="container3/test:2.0" #user/image:tag
 
 # Check if the Docker image exists
 if docker image inspect "$image_name" &> /dev/null; then
@@ -15,7 +15,7 @@ else
   # Build the Docker image from the './docker/' directory
   echo -e "${green}Building Docker image...${nc}"
   #docker build ./docker/ --tag "$image_name"
-  docker build ./docker/ -t "$image_name" 
+  docker build --no-cache ./docker/ -t "$image_name"
   #--pull --no-cache
 
   # Check if the image build was successful
