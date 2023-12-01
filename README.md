@@ -12,7 +12,7 @@ This is a dockerized implementation of https://github.com/oobabooga/text-generat
 
 ## Prerequisites
 
-Both pre-built docker images can be ran on a laptop with 16GB RAM. A GPU is required for running the GPU pre-built image, but is not required to run the other one. Actual minimal requirements are unknown, but users will also need at least 10GB storage to use the cpu-only pre-built image, and 20GB to use the GPU-supported image.
+Both pre-built docker images can be ran on a laptop with 16GB RAM. A GPU is required for running the GPU pre-built image, but is not required to run the other one. Actual minimal requirements are unknown, but users will also need at least 10GB storage to use the cpu-only pre-built image, and 26GB to use the GPU-supported image.
 
 If you would like to build it yourself, the model does not come with this repo as it is too large, but can be downloaded from https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML, or you can download your own.
 
@@ -45,7 +45,7 @@ docker build --target llama-cpu -t image/name:tag .
 ```
 To run the built image, run 
 ```
-docker run -it -e EXTRA_LAUNCH_ARGS="--listen --verbose" -p 7860:7860 stargazingv3/llama2:size
+docker run -it -e EXTRA_LAUNCH_ARGS="--listen --verbose" -p 7860:7860 image/name:tag
 ```
 
 To use a pre-built image with GPU support (26GB), run 

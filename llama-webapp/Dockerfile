@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9
+FROM ubuntu:22.04 as base
 
 # Set the working directory to /app
 WORKDIR /app
